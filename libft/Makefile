@@ -109,7 +109,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	ar rc $(NAME) $?
 	ranlib $(NAME)
 
 $(OBJ_PATHS):
