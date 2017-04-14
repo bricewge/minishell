@@ -52,7 +52,9 @@ $(NAME): $(LIB)/$(LIB).a $(OBJ)
 $(OBJ_PATHS):
 	mkdir -p $@
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER) | $(OBJ_PATHS)
+$(OBJ): | $(OBJ_PATHS)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 # /!\ Dirty workaround /!\
