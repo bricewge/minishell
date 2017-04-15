@@ -14,24 +14,25 @@
 # define MINISHELL_H
 # include "libft.h"
 # include "get_next_line.h"
-# define PROMPT "$> "
+# define PROMPT "❯ "
 
-typedef struct		s_builtin
+typedef struct		s_bltin
 {
 	int				(*f)(char **args);
 	int				len;
 	char			name[11];
-}					t_builtin;
-
-/* typedef struct		s_arr */
-/* { */
-/* 	void			*base; */
-
-
-/* } */
+}					t_bltin;
+typedef struct		s_arr
+{
+	const void		*base;
+	size_t			*nel;
+	size_t			width;
+}					t_arr;
 int					sh_loop(void);
 char				**sh_parse(char *line);
 int					sh_exec(char **args);
+
+uint8_t				exitstatus(uint8_t *status);
 /*
 ** Builtins functions
 */
@@ -41,12 +42,21 @@ int					b_setenv(char **args);
 int					b_unsetenv(char **args);
 int					b_env(char **args);
 int					b_exit(char **args);
+int					b_true(char **args);
+int					b_false(char **args);
 /*
 ** Functions which ought to be moved in my libft.
 */
-
+/* void				*ft_lfind(const void *key, t_arr array, */
+/* 							int (*compar)(const void *, const void *)); */
+char				*ft_pathjoin(const char *dir, const char *file);
+char				*ft_getenv(const char *name);
+int					ft_setenv(const char *name, const char *value,
+								int overwrite);
+int					ft_putenv(char *string);
+int					ft_unsetenv(const char *name);
 
 extern char			**environ;
-extern t_builtin	builtins[6];
+extern t_bltin		g_bltins[8];
 
 #endif
