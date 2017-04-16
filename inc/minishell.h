@@ -31,8 +31,8 @@ typedef struct		s_arr
 int					sh_loop(void);
 char				**sh_parse(char *line);
 int					sh_exec(char **args);
+void				ft_freearr(char **pstr);
 
-uint8_t				exitstatus(uint8_t *status);
 /*
 ** Builtins functions
 */
@@ -47,9 +47,10 @@ int					b_false(char **args);
 /*
 ** Functions which ought to be moved in my libft.
 */
-/* void				*ft_lfind(const void *key, t_arr array, */
-/* 							int (*compar)(const void *, const void *)); */
+void				*ft_lfind(const void *key, t_arr array,
+							int (*compar)(const void *, const void *));
 char				*ft_pathjoin(const char *dir, const char *file);
+int					ft_puterror(char *msg, char *name, int errnum);
 char				*ft_getenv(const char *name);
 int					ft_setenv(const char *name, const char *value,
 								int overwrite);
@@ -58,5 +59,4 @@ int					ft_unsetenv(const char *name);
 
 extern char			**environ;
 extern t_bltin		g_bltins[8];
-
 #endif

@@ -2,35 +2,38 @@
 
 int			b_echo(char **args)
 {
-	if (args)
-		;
-	return (1);
-};
+	int		i;
 
-int			b_cd(char **args)
-{
-	if (args)
-		;
-	return (1);
+	i = 0;
+	while (args[++i])
+	{
+		if (i > 1)
+			ft_putchar(' ');
+		ft_putstr(args[i]);
+	}
+	ft_putchar('\n');
+	return (0);
 };
 
 int			b_setenv(char **args)
 {
-	if (args)
-		;
-	return (1);
+	int		ret;
+
+	if (!args[1])
+		return (1);
+	if (args[2])
+		ret = setenv(args[1], args[2], 1);
+	else
+		ret = setenv(args[1], "", 2);
+	return (ft_abs(ret));
 };
 
 int			b_unsetenv(char **args)
 {
-	if (args)
-		;
-	return (1);
-};
+	int		ret;
 
-int			b_exit(char **args)
-{
-	if (args)
-		;
-	return (1);
+	if (!args[1])
+		return (1);
+	ret = ft_unsetenv(args[1]);
+	return (ft_abs(ret));
 };

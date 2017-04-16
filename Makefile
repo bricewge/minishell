@@ -27,8 +27,14 @@ NAME = minishell
 # Project related variables
 SRC_PATH =  src
 SRC_NAME =	builtin/env.c				\
+						builtin/cd.c		 		\
+						builtin/exit.c			\
+						builtin/true.c			\
+						builtin/false.c			\
 						builtin/builtins.c	\
 						libft.c							\
+						parse.c							\
+						exec.c							\
 						minishell.c
 OBJ_PATH =  obj
 OBJ_PATHS =  $(sort $(dir $(OBJ)))
