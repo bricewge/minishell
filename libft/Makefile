@@ -33,6 +33,7 @@ SRC_NAME =	ctype/ft_isalnum.c					\
 						ctype/ft_itoa.c							\
 						ctype/ft_tolower.c					\
 						ctype/ft_toupper.c					\
+						ft/get_next_line.c					\
 						list/ft_lstadd.c						\
 						list/ft_lstdel.c						\
 						list/ft_lstdelone.c					\
