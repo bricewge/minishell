@@ -15,6 +15,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # define PROMPT "❯ "
+# define NB_BUILTINS 8
 
 typedef struct		s_bltin
 {
@@ -31,8 +32,7 @@ typedef struct		s_arr
 int					sh_loop(void);
 char				**sh_parse(char *line);
 int					sh_exec(char **args);
-void				ft_freearr(char **pstr);
-
+t_bltin				*builtins(void);
 /*
 ** Builtins functions
 */
@@ -45,18 +45,19 @@ int					b_exit(char **args);
 int					b_true(char **args);
 int					b_false(char **args);
 /*
-** Functions which ought to be moved in my libft.
+** Functions which ought to be moved in my libft
 */
 void				*ft_lfind(const void *key, t_arr array,
 							int (*compar)(const void *, const void *));
 char				*ft_pathjoin(const char *dir, const char *file);
 int					ft_puterror(char *msg, char *name, int errnum);
+void				ft_freearr(char **pstr);
+
+char				**ft_environ(char **envp);
 char				*ft_getenv(const char *name);
-int					ft_setenv(const char *name, const char *value,
+int					ft_setenv(const char *envname, const char *envvalue,
 								int overwrite);
 int					ft_putenv(char *string);
 int					ft_unsetenv(const char *name);
 
-extern char			**environ;
-extern t_bltin		g_bltins[8];
 #endif

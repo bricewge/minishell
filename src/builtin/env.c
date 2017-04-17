@@ -17,7 +17,7 @@ static int	b_env_display(char **args, char **envp)
 	int		i;
 
 	if (!envp)
-		envp = environ;
+		envp = ft_environ(NULL);
 	i = 0;
 	if (args[1] == 0)
 		while (envp[i])
@@ -70,7 +70,7 @@ int			b_env(char **args)
 		/* b_env_exec(args[i], envp); */
 	}
 	else
-		b_env_display(&args[i], environ);
+		b_env_display(&args[i], NULL);
 	/* if (envp) */
 	/* 	free(envp); */
 	return (0);
