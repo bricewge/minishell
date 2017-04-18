@@ -47,6 +47,7 @@ int					b_false(char **args);
 /*
 ** Functions which ought to be moved in my libft
 */
+char				*ft_stpcpy(char *dst, const char *src);
 void				*ft_lfind(const void *key, t_arr array,
 							int (*compar)(const void *, const void *));
 char				*ft_pathjoin(const char *dir, const char *file);

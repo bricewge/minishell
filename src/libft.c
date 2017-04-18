@@ -27,6 +27,26 @@ void			ft_freearr(char **pstr)
 	free(pstr);
 }
 
+/* void			*ft_lfind(const void *key, t_arr array, */
+/* 						  int (*compar)(const void *, const void *)) */
+/* { */
+
+/* } */
+
+char	*ft_stpcpy(char *dst, const char *src)
+{
+	int		i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (&dst[i]);
+}
+
 char			*ft_pathjoin(const char *dir, const char *file)
 {
 	char		*path;
@@ -50,15 +70,20 @@ int				ft_puterror(char *msg, char *name, int errnum)
 	return (errnum);
 }
 
+/*
+** On the first non NULL call store the environnment by copying it; on
+** subsequent non NULL call free the environnment and replace it.
+*/
+
 char			**ft_environ(char **envp)
 {
 	static char	**ret = NULL;
+	static int	firstrun = 0;
 	int			i;
 
-	if (envp)
+	if (firstrun == 0 && envp)
 	{
-		if (ret)
-			ft_freearr(ret);
+		firstrun = 1;
 		i = -1;
 		while (envp[++i])
 			continue;
@@ -70,6 +95,11 @@ char			**ft_environ(char **envp)
 				ret[i] = ft_strdup(envp[i]);
 			ret[i] = NULL;
 		}
+	}
+	else if (firstrun == 1 && envp)
+	{
+		free(ret);
+		ret = envp;
 	}
 	return (ret);
 }
@@ -99,37 +129,6 @@ char			*ft_getenv(const char *name)
 	return (NULL);
 }
 
-/* int				ft_setenv(const char *name, const char *value, */
-/* 					  int overwrite) */
-/* { */
-/* 	char		*env; */
-
-/* 	if (!name || !value) */
-/* 		return (-1); */
-/* 	if ((env = ft_getenv(name))) */
-/* 	{ */
-
-/* 	} */
-/* 	else */
-
-/* } */
-
-/* int				ft_putenv(char *string) */
-/* { */
-/* 	int			ret; */
-/* 	char		*name; */
-/* 	char		*value; */
-
-
-/* 	if (!string) */
-/* 		return (-1); */
-/* 	value = ft_strchr(string, '=') + 1; */
-/* 	name = ft_strsub(string, 0, value - string - 1); */
-/* 	ret = setenv(name, value, 1); */
-/* 	free(name); */
-/* 	return (ret); */
-/* } */
-
 /*
 ** Return the index at which the variable name is located in the environnment.
 ** Return -1 if it isn't present in the environnment.
@@ -138,51 +137,95 @@ char			*ft_getenv(const char *name)
 static int		ft_posinenv(const char *name, char **envp)
 {
 	int			i;
-	int			ret;
 	int			namelen;
 
 	namelen = ft_strlen(name);
 	i = -1;
 	while (envp[++i])
 		if (ft_strnequ(envp[i], name, namelen))
-			ret = i;
-	return (i);
+			return (i);
+	return (-1);
 }
 
 static int		ft_modenv(const char *envname, const char *envvalue,
 							int indname, char **envp)
 {
+	char		*newvar;
+	int			tlen;
+
+	tlen = ft_strlen(envname) + ft_strlen(envvalue) + 1;
+	if ((newvar = ft_strnew(tlen)))
+	{
+		free(envp[indname]);
+		envp[indname] = newvar;
+		newvar = ft_stpcpy(ft_stpcpy(newvar, envname), "=");
+		newvar = ft_stpcpy(newvar, envvalue);
+		return (0);
+	}
+	return (-1);
 }
 
 static int		ft_addenv(const char *envname, const char *envvalue,
 							char **envp)
 {
-}
+	int			i;
+	char		*newvar;
+	char		**newenv;
 
+	i = -1;
+	while (envp[++i])
+		continue;
+	newenv = (char**)malloc(sizeof(char*) * (i + 2));
+	if (newenv)
+	{
+		i = -1;
+		while (envp[++i])
+			newenv[i] = envp[i];
+		if ((newvar = ft_strnew(ft_strlen(envname) + ft_strlen(envvalue) + 1)))
+		{
+			newenv[i] = newvar;
+			newvar = ft_stpcpy(ft_stpcpy(newvar, envname), "=");
+			newvar = ft_stpcpy(newvar, envvalue);
+			newenv[i + 1] = NULL;
+			ft_environ(newenv);
+			return (0);
+		}
+	}
+	return (-1);
+}
 
 int				ft_setenv(const char *envname, const char *envvalue,
 							int overwrite)
 {
-	int			envlen;
-	int			namelen;
 	int			indname;
 	char		**envp;
 
 	if (!envname || ft_strchr(envname, '='))
 		return (-1);
 	envp = ft_environ(NULL);
-	envlen = -1;
-	namelen = ft_strlen(name);
-	indname = -1;
-	while (envp[++envname])
-		if (ft_strnequ(envp[envname], name, namelen))
-			indname = envname;
+	indname = ft_posinenv(envname, envp);
 	if (indname != -1 && overwrite == 0)
-		return (0); // It exists
+		return (0);
 	else if (indname != -1)
-		ft_modenv(envname, envvalue, indname, envp); //Modify entry
+		return (ft_modenv(envname, envvalue, indname, envp));
 	else
-		ft_addenv(envname, envvalue, envp); //Add entry
+		return (ft_addenv(envname, envvalue, envp));
+}
+
+int				ft_putenv(char *string)
+{
+	int			ret;
+	char		*name;
+	char		*value;
+
+
+	if (!string)
+		return (-1);
+	value = ft_strchr(string, '=') + 1;
+	name = ft_strsub(string, 0, value - string - 1);
+	ret = ft_setenv(name, value, 1);
+	free(name);
+	return (ret);
 }
 
 static int		ft_unsetenv_nrm(int envlen, int indname, char **envp)
@@ -194,14 +237,14 @@ static int		ft_unsetenv_nrm(int envlen, int indname, char **envp)
 	newenv = (char**)malloc(sizeof(*envp) * envlen);
 	if (newenv)
 	{
+		free(envp[indname]);
 		newenv[envlen -1] = NULL;
 		i = -1;
 		j = -1;
 		while (envp[++i])
 			if (i != indname)
-			newenv[++j] = ft_strdup(envp[i]);
+			newenv[++j] = envp[i];
 		ft_environ(newenv);
-		ft_freearr(newenv);
 	}
 	else
 		return(-1);

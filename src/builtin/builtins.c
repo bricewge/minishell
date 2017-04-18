@@ -22,9 +22,9 @@ int			b_setenv(char **args)
 	if (!args[1])
 		return (1);
 	if (args[2])
-		ret = setenv(args[1], args[2], 1);
+		ret = ft_setenv(args[1], args[2], 1);
 	else
-		ret = setenv(args[1], "", 2);
+		ret = ft_setenv(args[1], "", 2);
 	return (ft_abs(ret));
 };
 
