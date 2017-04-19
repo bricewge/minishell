@@ -53,7 +53,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(LIB)/$(LIB).a $(OBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) $(OBJ) $(LIB)/$(LIB).a -o $(NAME)
 
 $(OBJ_PATHS):
 	mkdir -p $@

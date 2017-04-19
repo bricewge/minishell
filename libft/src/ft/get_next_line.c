@@ -50,9 +50,9 @@ int		get_next_line(const int fd, char **line)
 	int				ret;
 	char			*end_line;
 	char			buf[BUFF_SIZE + 1];
-	static	char	*rest[OPEN_MAX];
+	static	char	*rest[FOPEN_MAX];
 
-	if (fd < 0 || !line || (fd > OPEN_MAX))
+	if (fd < 0 || !line || (fd > FOPEN_MAX))
 		return (-1);
 	*line = ft_strnew(0);
 	if (use_rest(line, &rest[fd], &end_line))

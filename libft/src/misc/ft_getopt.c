@@ -25,7 +25,7 @@ void			ft_getopt_error(char *name, char *error, const char *optstring)
 		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(error, 2);
 		ft_putstr_fd(" -- ", 2);
-		c[0] = (char)(uintptr_t)optopt;
+		c[0] = (char)optopt;
 		c[1] = '\0';
 		ft_putendl_fd(c, 2);
 	}
@@ -34,10 +34,10 @@ void			ft_getopt_error(char *name, char *error, const char *optstring)
 static int		ft_getopt_arg(char *const argv[], const char *optstring,
 								int *arg_i)
 {
-	if (argv[(uintptr_t)optind][*arg_i + 1])
-		optarg = (char*)argv[(uintptr_t)optind] + *arg_i + 1;
-	else if (argv[(uintptr_t)optind + 1])
-		optarg = (char*)argv[(uintptr_t)++optind];
+	if (argv[optind][*arg_i + 1])
+		optarg = (char*)argv[optind] + *arg_i + 1;
+	else if (argv[optind + 1])
+		optarg = (char*)argv[++optind];
 	else
 	{
 		ft_getopt_error((char*)argv[0], "option requires an argument",
@@ -54,7 +54,7 @@ static int		ft_getopt_arg(char *const argv[], const char *optstring,
 static int		ft_getopt_noarg(char *const argv[], int *arg_i)
 {
 	optarg = NULL;
-	if (argv[(uintptr_t)optind][*arg_i + 1])
+	if (argv[optind][*arg_i + 1])
 		++(*arg_i);
 	else
 	{
@@ -69,10 +69,10 @@ static	int		ft_getopt_parse(char *const argv[], const char *optstring,
 {
 	char		*opt;
 
-	while (argv[(uintptr_t)optind][*arg_i])
+	while (argv[optind][*arg_i])
 	{
-		optopt = argv[(uintptr_t)optind][*arg_i];
-		if ((opt = ft_strchr(optstring, argv[(uintptr_t)optind][*arg_i])))
+		optopt = argv[optind][*arg_i];
+		if ((opt = ft_strchr(optstring, argv[optind][*arg_i])))
 		{
 			if (opt[1] == ':')
 				return (ft_getopt_arg(argv, optstring, arg_i));
@@ -95,17 +95,12 @@ int				ft_getopt(int argc, char *const argv[], const char *optstring)
 {
 	static int	arg_i = 1;
 
-	if (optreset == 1)
-	{
-		optreset = 0;
-		arg_i = 1;
-	}
-	if (ft_strequ(argv[(uintptr_t)optind], "--"))
+	if (ft_strequ(argv[optind], "--"))
 	{
 		++optind;
 		return (-1);
 	}
-	if (optind < argc && argv[(uintptr_t)optind][0] == '-')
+	if (optind < argc && argv[optind][0] == '-')
 		return (ft_getopt_parse(argv, optstring, &arg_i));
 	return (-1);
 }
