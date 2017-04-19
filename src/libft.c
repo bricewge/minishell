@@ -15,6 +15,7 @@
 */
 
 #include "libft.h"
+#include "minishell.h"
 
 // TODO Make it more generic, using t_arr type
 void			ft_freearr(char **pstr)

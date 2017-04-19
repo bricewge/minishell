@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char			**sh_parse(char *line)
+char			**sh_parse(char *line, int status)
 {
 	int			i;
 	char		**args;
@@ -33,6 +33,11 @@ char			**sh_parse(char *line)
 			{
 				free(args[i]);
 				args[i] = ft_strdup(env);
+			}
+			else if ('?')
+			{
+				free(args[i]);
+				args[i] = ft_strdup(ft_itoa(status));
 			}
 			else
 				ft_strclr(args[i]);

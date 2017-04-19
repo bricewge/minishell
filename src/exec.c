@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <sys/wait.h>
-#include <search.h>
+/* #include <search.h> */
 #include "minishell.h"
 
 static int			bltincmp(const void *p1, const void *p2)
@@ -94,16 +94,15 @@ int				sh_launch(char **args)
 
 int				sh_exec(char **args)
 {
-	t_bltin		*bltins;
 	t_bltin		*bltin;
+	t_arr		arr;
 	size_t 		nbbltin;
 
 	if (!args || !*args || !**args)
 		return (0);
-	bltins = builtins();
 	nbbltin = NB_BUILTINS;
-	bltin = lfind(args[0], bltins, &nbbltin,
-					sizeof(bltins[0]), bltincmp);
+	arr = 	(t_arr) {builtins(), &nbbltin, sizeof(*bltin)};
+	bltin = ft_lfind(args[0], arr, bltincmp);
 	if (bltin)
 		return (bltin->f(args));
 	else

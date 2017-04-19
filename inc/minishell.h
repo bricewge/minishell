@@ -15,7 +15,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # define PROMPT "❯ "
-# define NB_BUILTINS 8
+# define NB_BUILTINS (int)8
 
 typedef struct		s_bltin
 {
@@ -30,7 +30,7 @@ typedef struct		s_arr
 	size_t			width;
 }					t_arr;
 int					sh_loop(void);
-char				**sh_parse(char *line);
+char				**sh_parse(char *line, int status);
 int					sh_exec(char **args);
 t_bltin				*builtins(void);
 /*

@@ -23,7 +23,7 @@ int				sh_loop(void)
 	{
 		ft_putstr(PROMPT);
 		get_next_line(0, &line);
-		args = sh_parse(line);
+		args = sh_parse(line, status);
 		status = sh_exec(args);
 		free(line);
 		ft_freearr(args);
