@@ -47,18 +47,9 @@ int					b_false(char **args);
 /*
 ** Functions which ought to be moved in my libft
 */
-char				*ft_stpcpy(char *dst, const char *src);
 void				*ft_lfind(const void *key, t_arr array,
 							int (*compar)(const void *, const void *));
 char				*ft_pathjoin(const char *dir, const char *file);
 int					ft_puterror(char *msg, char *name, int errnum);
 void				ft_freearr(char **pstr);
-
-char				**ft_environ(char **envp);
-char				*ft_getenv(const char *name);
-int					ft_setenv(const char *envname, const char *envvalue,
-								int overwrite);
-int					ft_putenv(char *string);
-int					ft_unsetenv(const char *name);
-
 #endif

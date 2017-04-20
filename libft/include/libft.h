@@ -35,6 +35,7 @@ void					*ft_memchr(const void *s, int c, size_t n);
 int						ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t					ft_strlen(const char *s);
 char					*ft_strdup(const char *s1);
+char					*ft_stpcpy(char *dst, const char *src);
 char					*ft_strcpy(char *dst, const char *src);
 char					*ft_strncpy(char *dst, const char *src, size_t len);
 char					*ft_strchr(const char *s, int c);
@@ -116,4 +117,11 @@ int						ft_abs(int i);
 int						ft_nbrlen(int nbr);
 void					ft_swap(void *a, void *b, size_t size);
 void					ft_reverse(void *base, size_t nel, size_t width);
+
+char					**ft_environ(char **envp);
+char					*ft_getenv(const char *name);
+int						ft_setenv(const char *envname, const char *envvalue,
+									int overwrite);
+int						ft_putenv(char *string);
+int						ft_unsetenv(const char *name);
 #endif

@@ -56,8 +56,12 @@ SRC_NAME =	ctype/ft_isalnum.c					\
 						stdio/ft_putstr_fd.c				\
 						stdlib/ft_atoi.c						\
 						stdlib/ft_abs.c							\
+						stdlib/ft_environ.c					\
+						stdlib/ft_getenv.c					\
+						stdlib/ft_putenv.c					\
+						stdlib/ft_setenv.c					\
+						stdlib/ft_unsetenv.c				\
 						string/ft_bzero.c						\
-						string/ft_memccpy.c					\
 						string/ft_memchr.c					\
 						string/ft_memcmp.c					\
 						string/ft_memcpy.c					\
@@ -70,6 +74,7 @@ SRC_NAME =	ctype/ft_isalnum.c					\
 						string/ft_strchr.c					\
 						string/ft_strclr.c					\
 						string/ft_strcmp.c					\
+						string/ft_stpcpy.c					\
 						string/ft_strcpy.c					\
 						string/ft_strdel.c					\
 						string/ft_strdup.c					\
