@@ -15,6 +15,6 @@
 int			b_true(char **args)
 {
 	if (args[0])
-	{};
+		;
 	return (0);
-};
+}

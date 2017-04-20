@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
+/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int			b_echo(char **args)
@@ -13,7 +25,7 @@ int			b_echo(char **args)
 	}
 	ft_putchar('\n');
 	return (0);
-};
+}
 
 int			b_setenv(char **args)
 {
@@ -26,7 +38,7 @@ int			b_setenv(char **args)
 	else
 		ret = ft_setenv(args[1], "", 2);
 	return (ft_abs(ret));
-};
+}
 
 int			b_unsetenv(char **args)
 {
@@ -36,4 +48,4 @@ int			b_unsetenv(char **args)
 		return (1);
 	ret = ft_unsetenv(args[1]);
 	return (ft_abs(ret));
-};
+}

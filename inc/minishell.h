@@ -31,7 +31,7 @@ typedef struct		s_arr
 }					t_arr;
 int					sh_loop(void);
 char				**sh_parse(char *line, int status);
-int					sh_exec(char **args);
+int					sh_exec(char **args, int status);
 t_bltin				*builtins(void);
 /*
 ** Builtins functions

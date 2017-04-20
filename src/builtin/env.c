@@ -25,28 +25,6 @@ static int	b_env_display(char **args, char **envp)
 	return (0);
 }
 
-/* static int	b_env_exec(char **args, char **envp) */
-/* { */
-
-/* } */
-
-/* static char	**b_env_modenv(char **args, int exact) */
-/* { */
-/* 	char	**envp; */
-/* 	int		nbvar; */
-
-/* 	nbvar = 0; */
-/* 	while (ft_strchr(args[nbvar], '=')) */
-/* 		++nbvar; */
-/* 	if (exact == 0) */
-/* 	{ */
-/* 		while (ft_strchr(args[nbvar], '=')) */
-/* 			++nbvar; */
-/* 	} */
-/* 	envp = NULL; */
-/* 	return (envp); */
-/* } */
-
 int			b_env(char **args)
 {
 	int		i;
@@ -60,18 +38,12 @@ int			b_env(char **args)
 		exact = 1;
 		++i;
 	}
-	// Create a modified environnment
-	// envp = b_env_modenv(args[i], exact);
 	envp = NULL;
-	// Do the approriate thing
 	if (exact)
 	{
 		b_env_display(&args[i], envp);
-		/* b_env_exec(args[i], envp); */
 	}
 	else
 		b_env_display(&args[i], NULL);
-	/* if (envp) */
-	/* 	free(envp); */
 	return (0);
 }

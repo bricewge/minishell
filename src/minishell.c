@@ -24,7 +24,7 @@ int				sh_loop(void)
 		ft_putstr(PROMPT);
 		get_next_line(0, &line);
 		args = sh_parse(line, status);
-		status = sh_exec(args);
+		status = sh_exec(args, status);
 		free(line);
 		ft_freearr(args);
 	}
@@ -35,7 +35,7 @@ int				main(int ac, char **av, char **envp)
 {
 	ft_environ(envp);
 	ft_environ(NULL);
-    if (ac && *av)
+	if (ac && *av)
 		return (sh_loop());
 	return (0);
 }

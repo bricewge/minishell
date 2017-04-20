@@ -15,7 +15,7 @@
 int			b_exit(char **args)
 {
 	if (!args[1])
-		return (-1); // Should return the previous exit code
+		return (-1);
 	else
 		return (ft_atoi(args[1]));
-};
+}
