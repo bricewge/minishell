@@ -12,45 +12,53 @@
 
 #include "minishell.h"
 
-static void		stripesc(char *str)
+static void		cleanup_line(char *str)
 {
-	int			i;
+	int			iread;
+	int			iwrite;
 
 	if (!str)
 		return ;
-	i = 0;
-	while (str[i])
+	iread = 0;
+	iwrite = 0;
+	while (iwrite <= iread)
 	{
-		if (str[i] == 27)
-			str = ft_strcpy(str + i, str + i + 3);
+		if (iwrite < iread)
+			str[iwrite] = str[iread];
+		if (str[iread] == 27)
+			iread += 2;
+		else if (str[iread] == '\t')
+			;
 		else
-			++i;
+			++iwrite;
+		if (str[iread])
+			++iread;
 	}
 }
 
-static void		basic_varexpand(char *arg, int status)
+static void		basic_varexpand(char **arg, int status)
 {
 	char		*env;
 
-	if (ft_strequ(arg, "~"))
+	if (ft_strequ(*arg, "~"))
 	{
-		free(arg);
-		arg = ft_strdup(ft_getenv("HOME"));
+		free(*arg);
+		*arg = ft_strdup(ft_getenv("HOME"));
 	}
-	else if (arg[0] == '$')
+	else if (*(arg[0]) == '$')
 	{
-		if (arg[1] && (env = ft_getenv(&(arg[1]))))
+		if ((*arg)[1] && (env = ft_getenv(&(*arg)[1])))
 		{
-			free(arg);
-			arg = ft_strdup(env);
+			free(*arg);
+			*arg = ft_strdup(env);
 		}
-		else if (arg[1] == '?')
+		else if ((*arg)[1] == '?')
 		{
-			free(arg);
-			arg = ft_strdup(ft_itoa(status));
+			free(*arg);
+			*arg = ft_itoa(status);
 		}
 		else
-			ft_strclr(arg);
+			ft_strclr(*arg);
 	}
 }
 
@@ -59,12 +67,12 @@ char			**sh_parse(char *line, int status)
 	int			i;
 	char		**args;
 
+	cleanup_line(line);
 	args = ft_strsplit(line, ' ');
 	i = -1;
 	while (args[++i])
 	{
-		stripesc(args[i]);
-		basic_varexpand(args[i], status);
+		basic_varexpand(&(args[i]), status);
 	}
 	return (args);
 }
