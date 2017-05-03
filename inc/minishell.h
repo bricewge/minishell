@@ -23,12 +23,6 @@ typedef struct		s_bltin
 	int				len;
 	char			name[11];
 }					t_bltin;
-typedef struct		s_arr
-{
-	const void		*base;
-	size_t			*nel;
-	size_t			width;
-}					t_arr;
 int					sh_loop(void);
 char				**sh_parse(char *line, int status);
 int					sh_exec(char **args, int status);
@@ -45,11 +39,8 @@ int					b_exit(char **args);
 int					b_true(char **args);
 int					b_false(char **args);
 /*
-** Functions which ought to be moved in my libft
+** Trivial functions
 */
-void				*ft_lfind(const void *key, t_arr array,
-							int (*compar)(const void *, const void *));
-char				*ft_pathjoin(const char *dir, const char *file);
 int					ft_puterror(char *msg, char *name, int errnum);
 void				ft_freearr(char **pstr);
 #endif

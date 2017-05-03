@@ -46,6 +46,7 @@ SRC_NAME =	ctype/ft_isalnum.c					\
 						math/ft_sqrt.c							\
 						misc/ft_basename.c					\
 						misc/ft_getopt.c						\
+						misc/ft_pathjoin.c					\
 						stdio/ft_putchar.c					\
 						stdio/ft_putchar_fd.c				\
 						stdio/ft_putendl.c					\
@@ -98,7 +99,8 @@ SRC_NAME =	ctype/ft_isalnum.c					\
 						string/ft_strstr.c					\
 						string/ft_strsub.c					\
 						string/ft_strswap.c					\
-						string/ft_strtrim.c
+						string/ft_strtrim.c					\
+						search/ft_lfind.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ_PATH =  obj
 OBJ_PATHS = $(sort $(dir $(OBJ)))

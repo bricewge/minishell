@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.c                                            :+:      :+:    :+:   */
+/*   ft_pathjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,18 @@
 
 #include "libft.h"
 
-void			ft_freearr(char **pstr)
+char			*ft_pathjoin(const char *dir, const char *file)
 {
-	int			i;
+	char		*path;
+	int			len;
 
-	i = -1;
-	while (pstr[++i])
-		free(pstr[i]);
-	free(pstr);
-}
-
-int				ft_puterror(char *msg, char *name, int errnum)
-{
-	ft_putstr_fd(msg, 2);
-	ft_putendl_fd(name, 2);
-	return (errnum);
+	len = ft_strlen(dir);
+	if (dir[len - 1] != '/')
+	{
+		path = ft_strjoin(dir, "/");
+		path = ft_strjoinf(path, file, 1);
+	}
+	else
+		path = ft_strjoin(dir, file);
+	return (path);
 }

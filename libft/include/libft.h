@@ -22,6 +22,12 @@ typedef struct			s_list
 	size_t				content_size;
 	struct s_list		*next;
 }						t_list;
+typedef struct			s_arr
+{
+	const void			*base;
+	size_t				*nel;
+	size_t				width;
+}						t_arr;
 /*
 ** First part
 */
@@ -110,9 +116,6 @@ int						*ft_range(int min, int max);
 int						ft_sqrt(int nb);
 
 char					*ft_strjoinf(char const *s1, char const *s2, int nb);
-char					*ft_basename(char *path);
-int						ft_getopt(int argc, char *const argv[],
-									const char *optstring);
 int						ft_abs(int i);
 int						ft_nbrlen(int nbr);
 void					ft_swap(void *a, void *b, size_t size);
@@ -124,4 +127,16 @@ int						ft_setenv(const char *envname, const char *envvalue,
 									int overwrite);
 int						ft_putenv(char *string);
 int						ft_unsetenv(const char *name);
+/*
+** Misc
+*/
+char					*ft_basename(char *path);
+int						ft_getopt(int argc, char *const argv[],
+									const char *optstring);
+char					*ft_pathjoin(const char *dir, const char *file);
+/*
+** Search
+*/
+void					*ft_lfind(const void *key, t_arr array,
+									int (*compar)(const void *, const void *));
 #endif

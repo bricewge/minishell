@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.c                                            :+:      :+:    :+:   */
+/*   ft_lfind.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,18 @@
 
 #include "libft.h"
 
-void			ft_freearr(char **pstr)
+void			*ft_lfind(const void *key, t_arr array,
+							int (*compar)(const void *, const void *))
 {
-	int			i;
+	size_t		i;
+	char		*arrmemb;
 
 	i = -1;
-	while (pstr[++i])
-		free(pstr[i]);
-	free(pstr);
-}
-
-int				ft_puterror(char *msg, char *name, int errnum)
-{
-	ft_putstr_fd(msg, 2);
-	ft_putendl_fd(name, 2);
-	return (errnum);
+	while (++i < *(array.nel))
+	{
+		arrmemb = (void*)array.base + (i * array.width);
+		if (compar(key, arrmemb) == 0)
+			return (arrmemb);
+	}
+	return (NULL);
 }
