@@ -92,14 +92,13 @@ int					sh_launch(char **args)
 int					sh_exec(char **args, int status)
 {
 	t_bltin			*bltin;
-	t_arr			arr;
 	size_t			nbbltin;
 
 	if (!args || !*args || !**args)
 		return (status);
 	nbbltin = NB_BUILTINS;
-	arr = (t_arr) {builtins(), &nbbltin, sizeof(*bltin)};
-	bltin = ft_lfind(args[0], arr, bltincmp);
+	bltin = ft_lfind(args[0], (t_arr) {builtins(), &nbbltin, sizeof(*bltin)},
+						bltincmp);
 	if (bltin)
 		return (bltin->f(args));
 	else
