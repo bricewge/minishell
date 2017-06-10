@@ -14,8 +14,10 @@
 
 int				sh_loop(void)
 {
+	int			i;
 	int			status;
 	char		*line;
+	char		**cmds;
 	char		**args;
 
 	status = 0;
@@ -23,10 +25,16 @@ int				sh_loop(void)
 	{
 		ft_putstr(PROMPT);
 		get_next_line(0, &line);
-		args = sh_parse(line, status);
-		status = sh_exec(args, status);
+		cmds = ft_strsplit(line, ';');
+		i = -1;
+		while (cmds[++i])
+		{
+			args = sh_parse(cmds[i], status);
+			status = sh_exec(args, status);
+			ft_freearr(args);
+		}
+		ft_freearr(cmds);
 		free(line);
-		ft_freearr(args);
 	}
 	return (status < 0 ? 0 : status);
 }
