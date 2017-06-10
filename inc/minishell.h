@@ -14,7 +14,7 @@
 # define MINISHELL_H
 # include "libft.h"
 # include "get_next_line.h"
-# define PROMPT "❯ "
+# define PROMPT "\e[35m❯ \e[0m"
 # define NB_BUILTINS (int)8
 
 typedef struct		s_bltin
