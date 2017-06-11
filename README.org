@@ -1,0 +1,19 @@
+#+TITLE: minishell
+
+* Roadmap
+
+** DONE Rewrite =setenv=, =unsetev=,  =getenv= and =putenv=
+   CLOSED: [2017-04-18 Tue 18:58]
+They should not leaks. +But How do I know if =environ= is in the heap or in the
+stack.+
+** DONE Rewrite =lfind=
+   CLOSED: [2017-04-20 Thu 10:32]
+** TODO Make =env= execute commands
+** TODO Repair GNL
+- [ ] Should end on =C d=
+- [ ] Should make a new line on =C c=
+- [X] =Up=, =Ret= display an error but the prompt write over the error message
+* Ressources
+- [[http://pubs.opengroup.org/onlinepubs/9699919799/][POSIX shell specifications]]
+- [[https://brennan.io/2015/01/16/write-a-shell-in-c/][Tutorial - Write a Shell in C]]
+- [[http://marionpatrick.free.fr/man_html/html/tuto_shell.html][Tutoriel shell]] 

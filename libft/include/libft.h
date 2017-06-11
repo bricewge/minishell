@@ -139,4 +139,9 @@ char					*ft_pathjoin(const char *dir, const char *file);
 */
 void					*ft_lfind(const void *key, t_arr array,
 									int (*compar)(const void *, const void *));
+/*
+** stdlib
+*/
+char					*ft_realpath(const char *restrict file_name,
+									 char *restrict resolved_name);
 #endif

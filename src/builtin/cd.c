@@ -10,25 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/param.h>
 #include "minishell.h"
 
 int				b_cd(char **args)
 {
-	char		*curpath;
+	char		*newpwd;
+	char		*oldpwd;
+	char		tmp[PATH_MAX];
 
-	curpath = NULL;
-	if (!args[1] || !args[1][0])
-		curpath = ft_getenv("HOME");
+	if ((oldpwd = ft_getenv("PWD")) == NULL)
+		oldpwd = getcwd(ft_strnew(PATH_MAX), PATH_MAX);
+	//
+	if (args[1] == NULL || !args[1][0])
+		newpwd = ft_getenv("HOME");
 	else if (ft_strequ(args[1], "-"))
-	{
-		curpath = ft_getenv("OLDPWD");
-		ft_putendl(curpath);
-	}
+		ft_putendl(newpwd = ft_getenv("OLDPWD"));
 	else
-		curpath = args[1];
-	if (chdir(curpath) != 0)
-		return (ft_puterror("invalid directory: ", curpath, 1));
-	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
-	ft_setenv("PWD", curpath, 1);
+		newpwd = args[1];
+	newpwd = realpath(newpwd, tmp);
+	if (newpwd == NULL)
+		return (ft_puterror("invalid directory: ", NULL, 1));
+	if (chdir(newpwd) != 0)
+		return (ft_puterror("invalid directory: ", newpwd, 1));
+	// if error free(oldpwd) and print erro message
+	ft_setenv("OLDPWD", oldpwd, 1);
+	ft_setenv("PWD", newpwd, 1);
 	return (0);
 }

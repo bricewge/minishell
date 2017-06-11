@@ -62,6 +62,7 @@ SRC_NAME =	ctype/ft_isalnum.c					\
 						stdlib/ft_putenv.c					\
 						stdlib/ft_setenv.c					\
 						stdlib/ft_unsetenv.c				\
+						stdlib/ft_realpath.c				\
 						string/ft_bzero.c						\
 						string/ft_memchr.c					\
 						string/ft_memcmp.c					\
