@@ -27,7 +27,7 @@ int				sh_loop(void)
 		get_next_line(0, &line);
 		cmds = ft_strsplit(line, ';');
 		i = -1;
-		while (cmds[++i])
+		while (cmds[++i] && status >= 0)
 		{
 			args = sh_parse(cmds[i], status);
 			status = sh_exec(args, status);
