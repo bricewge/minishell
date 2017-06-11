@@ -37,6 +37,7 @@ SRC_NAME =	builtin/env.c				\
 						libft.c							\
 						parse.c							\
 						exec.c							\
+						signals.c						\
 						minishell.c
 OBJ_PATH =  obj
 OBJ_PATHS =  $(sort $(dir $(OBJ)))

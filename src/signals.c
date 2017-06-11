@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,41 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <signal.h>
 #include "minishell.h"
 
-int				sh_loop(void)
+static void			sigint(int signum)
 {
-	int			i;
-	int			status;
-	char		*line;
-	char		**cmds;
-	char		**args;
-
-	status = 0;
-	while (status >= 0)
+	if (g_childpid != 0)
 	{
-		ft_putstr(PROMPT);
-		get_next_line(0, &line);
-		cmds = ft_strsplit(line, ';');
-		i = -1;
-		while (cmds[++i])
-		{
-			args = sh_parse(cmds[i], status);
-			status = sh_exec(args, status);
-			ft_freearr(args);
-		}
-		ft_freearr(cmds);
-		free(line);
+		kill(g_childpid, signum);
+		g_childpid = 0;
 	}
-	return (status < 0 ? 0 : status);
 }
 
-int				main(int ac, char **av, char **envp)
+void				signals(void)
 {
-	ft_environ(envp);
-	ft_environ(NULL);
-	signals();
-	if (ac && *av)
-		return (sh_loop());
-	return (0);
+	g_childpid = 0;
+	signal(SIGINT, sigint);
 }

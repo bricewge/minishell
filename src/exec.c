@@ -42,27 +42,31 @@ t_bltin				*builtins(void)
 int					ft_execute(char *path, char **args, char **envp)
 {
 	int				status;
-	pid_t			father;
 
 	status = 0;
 	if (access(path, F_OK) == -1)
 		return (ft_puterror("command not found: ", path, 127));
 	else if (access(path, X_OK) == -1)
 		return (ft_puterror("permission denied: ", path, 126));
-	father = fork();
-	if (father > 0)
+	g_childpid = fork();
+	if (g_childpid > 0)
 		wait(&status);
-	else if (father == 0)
+	else if (g_childpid == 0)
 	{
 		execve(path, args, envp);
 		return (ft_puterror("execution error: ", args[0], 1));
 	}
-	return (status);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (128 + WTERMSIG(status));
+	else
+		return (status);
 }
 
 int					sh_launch(char **args)
 {
-	int				ret;
+	int				status;
 	int				i;
 	char			**path;
 	char			*exec;
@@ -77,10 +81,10 @@ int					sh_launch(char **args)
 			exec = ft_pathjoin(path[i], args[0]);
 			if (access(exec, F_OK) == 0)
 			{
-				ret = ft_execute(exec, args, ft_environ(NULL));
+				status = ft_execute(exec, args, ft_environ(NULL));
 				free(exec);
 				ft_freearr(path);
-				return (ret);
+				return (status);
 			}
 			free(exec);
 		}

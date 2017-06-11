@@ -23,10 +23,17 @@ typedef struct		s_bltin
 	int				len;
 	char			name[11];
 }					t_bltin;
+
+/*
+** Global variables
+*/
+pid_t				g_childpid;
+
 int					sh_loop(void);
 char				**sh_parse(char *line, int status);
 int					sh_exec(char **args, int status);
 t_bltin				*builtins(void);
+void				signals(void);
 /*
 ** Builtins functions
 */
