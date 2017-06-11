@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   unsetenv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,10 +12,12 @@
 
 #include "minishell.h"
 
-int			b_exit(char **args)
+int			b_unsetenv(char **args)
 {
+	int		ret;
+
 	if (!args[1])
-		return (-1);
-	else
-		return (ft_atoi(args[1]));
+		return (1);
+	ret = ft_unsetenv(args[1]);
+	return (ft_abs(ret));
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,10 +12,15 @@
 
 #include "minishell.h"
 
-int			b_exit(char **args)
+int			b_setenv(char **args)
 {
+	int		ret;
+
 	if (!args[1])
-		return (-1);
+		return (1);
+	if (args[2])
+		ret = ft_setenv(args[1], args[2], 1);
 	else
-		return (ft_atoi(args[1]));
+		ret = ft_setenv(args[1], "", 2);
+	return (ft_abs(ret));
 }

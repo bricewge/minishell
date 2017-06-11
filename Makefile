@@ -27,11 +27,13 @@ NAME = minishell
 # Project related variables
 SRC_PATH =  src
 SRC_NAME =	builtin/env.c				\
+						builtin/echo.c			\
 						builtin/cd.c		 		\
 						builtin/exit.c			\
 						builtin/true.c			\
 						builtin/false.c			\
-						builtin/builtins.c	\
+						builtin/setenv.c		\
+						builtin/unsetenv.c	\
 						libft.c							\
 						parse.c							\
 						exec.c							\
