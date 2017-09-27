@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 15:00:19 by bwaegene          #+#    #+#             */
-/*   Updated: 2016/12/29 09:52:38 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/09/27 17:29:09 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@ int		ft_strlen(const char *s)
 {
 	int		i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;
