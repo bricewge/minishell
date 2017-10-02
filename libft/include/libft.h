@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 20:40:18 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/02/05 12:52:58 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/02 13:13:29 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void					*ft_memccpy(void *dst, const void *src, int c,
 void					*ft_memmove(void *dst, const void *src, size_t len);
 void					*ft_memchr(const void *s, int c, size_t n);
 int						ft_memcmp(const void *s1, const void *s2, size_t n);
-size_t					ft_strlen(const char *s);
+size_t					ft_strlen(const char s[static 1]);
 char					*ft_strdup(const char *s1);
 char					*ft_stpcpy(char *dst, const char *src);
 char					*ft_strcpy(char *dst, const char *src);

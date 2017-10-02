@@ -6,11 +6,11 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 15:00:19 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/09/27 17:29:09 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/02 11:52:36 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strlen(const char *s)
+int		ft_strlen(const char s[static 1])
 {
 	int		i;
 
