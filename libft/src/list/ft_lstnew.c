@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 14:04:59 by bwaegene          #+#    #+#             */
-/*   Updated: 2016/12/28 19:22:43 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:09:28 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 		}
 		else
 		{
-			new->content = malloc(sizeof(*content) * content_size);
+			new->content = (void *)malloc(content_size);
 			if (new->content)
 			{
 				ft_memcpy(new->content, content, content_size);

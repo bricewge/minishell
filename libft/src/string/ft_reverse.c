@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:30:28 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void	ft_reverse(void *base, size_t nel, size_t width)
 		return ;
 	i = -1;
 	while (++i <= --nel)
-		ft_swap(base + (i * width), base + (nel * width), width);
+		ft_swap((size_t *)base + (i * width),
+				(size_t *)base + (nel * width), width);
 }

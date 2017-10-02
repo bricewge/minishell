@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/02 12:35:22 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 # include "libft.h"
 # include "get_next_line.h"
-# define PROMPT "\e[36m❯ \e[0m"
+# define PROMPT "\x1B[36m❯ \x1B[0m"
 # define NB_BUILTINS (int)8
 
 typedef struct		s_bltin

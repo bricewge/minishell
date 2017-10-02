@@ -6,7 +6,7 @@
 #    By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 09:48:23 by bwaegene          #+#    #+#              #
-#    Updated: 2017/02/05 12:58:00 by bwaegene         ###   ########.fr        #
+#    Updated: 2017/10/02 12:02:44 by bwaegene         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -15,7 +15,7 @@
 
 # Compiler configuration
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pedantic -std=c99
 ## Flags for the C preprocessor
 CPPFLAGS = -I$(INCLUDE)
 NAME = libft.a
