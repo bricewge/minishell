@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 20:40:18 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/10/02 13:13:29 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/04 16:01:49 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ char					*ft_basename(char *path);
 int						ft_getopt(int argc, char *const argv[],
 									const char *optstring);
 char					*ft_pathjoin(const char *dir, const char *file);
+int						ft_isdir(const char *path);
+int						ft_isregfile(const char *path);
 /*
 ** Search
 */

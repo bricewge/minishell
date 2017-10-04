@@ -6,7 +6,7 @@
 #    By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 09:48:23 by bwaegene          #+#    #+#              #
-#    Updated: 2017/10/02 12:02:44 by bwaegene         ###   ########.fr        #
+#    Updated: 2017/10/04 16:02:51 by bwaegene         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,6 +47,8 @@ SRC_NAME =	ctype/ft_isalnum.c					\
 						misc/ft_basename.c					\
 						misc/ft_getopt.c						\
 						misc/ft_pathjoin.c					\
+						misc/ft_isdir.c							\
+						misc/ft_isregfile.c					\
 						stdio/ft_putchar.c					\
 						stdio/ft_putchar_fd.c				\
 						stdio/ft_putendl.c					\
