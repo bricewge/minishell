@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/04 16:09:22 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int					sh_launch(char **args)
 	char			**path;
 	char			*exec;
 
-	if (args[0][0] == '.' || args[0][0] == '/')
+	if (ft_isregfile(args[0]) != 0 && (args[0][0] == '.' || args[0][0] == '/'))
 		return (ft_execute(args[0], args, ft_environ(NULL)));
 	else if ((path = ft_strsplit(ft_getenv("PATH"), ':')))
 	{
