@@ -6,7 +6,7 @@
 #    By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 09:48:23 by bwaegene          #+#    #+#              #
-#    Updated: 2017/10/03 13:37:57 by bwaegene         ###   ########.fr        #
+#    Updated: 2017/10/04 14:45:14 by bwaegene         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -73,12 +73,12 @@ lib:
 
 .PHONY: clean
 clean:
-	$(MAKE) -C ./$(LIB_PATH) clean
-	$(RM) -r $(OBJ_PATH)
+	-$(MAKE) -C ./$(LIB_PATH) clean
+	-$(RM) -r $(OBJ_PATH)
 
 fclean: clean
-	$(MAKE) -C ./$(LIB_PATH) fclean
-	$(RM) -r $(NAME) *.dSYM
+	-$(MAKE) -C ./$(LIB_PATH) fclean
+	-$(RM) -r $(NAME) *.dSYM
 
 re: fclean
 	$(MAKE) all
