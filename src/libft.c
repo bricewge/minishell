@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/04 16:13:09 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			ft_freearr(char **pstr)
 int				ft_puterror(char *msg, char *name, int errnum)
 {
 	ft_putstr_fd(msg, 2);
-	ft_putendl_fd(name, 2);
+	ft_putstr_fd(name, 2);
+	ft_putchar_fd('\n', 2);
 	return (errnum);
 }
