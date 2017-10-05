@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:03:14 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ int				sh_loop(void)
 
 int				main(int ac, char **av, char **envp)
 {
+	int			ret;
+
+	(void)ac;
+	(void)av;
+	ret = 1;
 	ft_environ(envp);
-	ft_environ(NULL);
 	signals();
-	if (ac && *av)
-		return (sh_loop());
-	return (0);
+	ret = sh_loop();
+	ft_freearr(ft_environ(NULL));
+	return (ret);
 }
