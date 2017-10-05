@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:21:14 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ static int	b_env_display(char **args, char **envp)
 
 	if (!envp)
 		envp = ft_environ(NULL);
-	i = 0;
 	if (args[1] == 0)
-		while (envp[i])
-			ft_putendl(envp[i++]);
+	{
+		i = -1;
+		while (envp[++i])
+			ft_putendl(envp[i]);
+	}
 	return (0);
 }
 

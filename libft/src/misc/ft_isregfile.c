@@ -6,7 +6,7 @@
 /*   By: bwaegene <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:19:49 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/10/04 16:00:36 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/05 20:56:46 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int		ft_isregfile(const char *path)
 
 	if (lstat(path, &buf) == 0)
 		return (S_ISREG(buf.st_mode));
-	return(-1);
+	return (-1);
 }

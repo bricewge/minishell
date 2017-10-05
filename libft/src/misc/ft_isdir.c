@@ -6,7 +6,7 @@
 /*   By: bwaegene <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:19:49 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/10/04 16:08:58 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/05 20:56:31 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int		ft_isdir(const char *path)
 
 	if (lstat(path, &buf) == 0)
 		return (S_ISDIR(buf.st_mode));
-	return(0);
+	return (0);
 }
