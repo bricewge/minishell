@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/05 20:21:41 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ static int		ft_unsetenv_nrm(int envlen, int indname, char **envp)
 	newenv = (char**)malloc(sizeof(*envp) * envlen);
 	if (newenv)
 	{
-		free(envp[indname]);
 		newenv[envlen - 1] = NULL;
 		i = -1;
 		j = -1;
 		while (envp[++i])
 			if (i != indname)
-				newenv[++j] = envp[i];
+				newenv[++j] = ft_strdup(envp[i]);
 		ft_environ(newenv);
 	}
 	else

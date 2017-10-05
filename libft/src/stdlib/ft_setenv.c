@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/05 20:42:52 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ static int		ft_addenv(const char *envname, const char *envvalue,
 	i = -1;
 	while (envp[++i])
 		continue;
-	newenv = (char**)malloc(sizeof(char*) * (i + 2));
+	newenv = (char**)malloc(sizeof(*newenv) * (i + 2));
 	if (newenv)
 	{
 		i = -1;
 		while (envp[++i])
-			newenv[i] = envp[i];
+			newenv[i] = ft_strdup(envp[i]);
 		if ((newvar = ft_strnew(ft_strlen(envname) + ft_strlen(envvalue) + 1)))
 		{
 			newenv[i] = newvar;

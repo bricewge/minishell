@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/27 20:08:00 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/05 23:12:03 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,37 @@
 ** subsequent non NULL call free the environnment and replace it.
 */
 
-char			**ft_environ(char **envp)
+char			**ft_environ(char **newenvp)
 {
-	static char	**ret = NULL;
+	static char	**envp = NULL;
 	static int	firstrun = 0;
 	int			i;
 
-	if (firstrun == 0 && envp)
+	if (firstrun == 0 && newenvp)
 	{
 		firstrun = 1;
+		// i = ft_arrlen((void **)envp, sizeof(*envp));
+		// envp = (char **)ft_arrdup(newenvp, i, sizeof(*envp));
 		i = -1;
-		while (envp[++i])
+		while (newenvp[++i])
 			continue;
-		ret = (char**)malloc(sizeof(char*) * (i + 1));
-		if (ret)
+		envp = (char**)malloc(sizeof(char*) * (i + 1));
+		if (envp)
 		{
 			i = -1;
-			while (envp[++i])
-				ret[i] = ft_strdup(envp[i]);
-			ret[i] = NULL;
+			while (newenvp[++i])
+				envp[i] = ft_strdup(newenvp[i]);
+			envp[i] = NULL;
 		}
 	}
-	else if (firstrun == 1 && envp)
+	else if (firstrun == 1 && newenvp)
 	{
-		free(ret);
-		ret = envp;
+		i = -1;
+		while (envp[++i])
+			free(envp[i]);
+		free(envp);
+		// ft_arrdel(&envp);
+		envp = newenvp;
 	}
-	return (ret);
+	return (envp);
 }
