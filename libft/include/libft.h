@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/16 20:40:18 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/10/04 16:01:49 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/06 15:01:43 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,5 @@ void					*ft_lfind(const void *key, t_arr array,
 ** stdlib
 */
 char					*ft_realpath(const char *restrict file_name,
-									 char *restrict resolved_name);
+									char *restrict resolved_name);
 #endif
