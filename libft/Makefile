@@ -6,7 +6,7 @@
 #    By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 09:48:23 by bwaegene          #+#    #+#              #
-#    Updated: 2017/10/04 16:02:51 by bwaegene         ###   ########.fr        #
+#    Updated: 2017/10/09 13:10:28 by bwaegene         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -135,16 +135,20 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)
 test:
 	$(MAKE) -C test test
 
+.PHONY: norme
+norme:
+	-norminette $(SRC) $(HEADER)
+
 .PHONY: clean
 clean:
-	$(MAKE) -C lib/libunit clean
-	$(MAKE) -C test clean
-	$(RM) -r $(OBJ_PATH)
+	-$(MAKE) -C lib/libunit clean
+	-$(MAKE) -C test clean
+	-$(RM) -r $(OBJ_PATH)
 
 fclean: clean
-	$(MAKE) -C lib/libunit fclean
-	$(MAKE) -C test fclean
-	$(RM) -r $(NAME) $(NAME).dSYM
+	-$(MAKE) -C lib/libunit fclean
+	-$(MAKE) -C test fclean
+	-$(RM) -r $(NAME) $(NAME).dSYM
 
 re: fclean
-	$(MAKE) all
+	-$(MAKE) all

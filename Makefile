@@ -6,7 +6,7 @@
 #    By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 09:48:23 by bwaegene          #+#    #+#              #
-#    Updated: 2017/10/04 14:45:14 by bwaegene         ###   ########.fr        #
+#    Updated: 2017/10/09 13:10:39 by bwaegene         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -70,6 +70,11 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)
 
 lib:
 	$(MAKE) -C ./$(LIB_PATH)
+
+.PHONY: norme
+norme:
+	-$(MAKE) -C ./$(LIB_PATH) norme
+	-norminette $(SRC) $(HEADER)
 
 .PHONY: clean
 clean:
