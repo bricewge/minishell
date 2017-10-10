@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/10/04 16:09:22 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/10 17:04:45 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int					ft_execute(char *path, char **args, char **envp)
 	else if (g_childpid == 0)
 	{
 		execve(path, args, envp);
-		return (ft_puterror("execution error: ", args[0], 1));
+		exit(ft_puterror("execution error: ", args[0], 1));
 	}
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
