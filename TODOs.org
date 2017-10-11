@@ -1,0 +1,8 @@
+* DONE Create debug rule in Makefile
+CLOSED: [2017-10-11 Wed 13:49]
+https://stackoverflow.com/questions/1079832/how-can-i-configure-my-makefile-for-debug-and-release-builds/20830354#20830354
+https://felixcrux.com/blog/creating-basic-makefile
+* TODO Finalize env to be full POSIX
+* DONE Manage ctrl+D et ctrl+C keys combination features in line edition and process execution
+CLOSED: [2017-10-11 Wed 18:19]
+* TODO Write PDA for 21sh
