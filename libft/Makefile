@@ -6,7 +6,7 @@
 #    By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 09:48:23 by bwaegene          #+#    #+#              #
-#    Updated: 2017/10/09 13:10:28 by bwaegene         ###   ########.fr        #
+#    Updated: 2017/10/11 13:39:51 by bwaegene         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -111,6 +111,12 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 INCLUDE = include
 HEADER = $(INCLUDE)/$(NAME:.a=.h)
+# Debug variables
+DBG_CFLAGS = -g -O0 -DDEBUG
+DBG_DIR = debug
+DBG_NAME = libft-debug.a
+DBG_OBJ = $(addprefix $(DBG_DIR)/, $(OBJ_NAME))
+DBG_OBJ_PATHS = $(sort $(dir $(DBG_OBJ)))
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
@@ -120,8 +126,8 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $?
-	ranlib $(NAME)
+	ar rc $@ $?
+	ranlib $@
 
 $(OBJ_PATHS):
 	mkdir -p $@
@@ -131,6 +137,22 @@ $(OBJ): | $(OBJ_PATHS)
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
+# * Debug rules
+debug: $(DBG_NAME)
+
+$(DBG_NAME): $(DBG_OBJ)
+	ar rc $@ $?
+	ranlib $@
+
+$(DBG_OBJ_PATHS):
+	mkdir -p $@
+
+$(DBG_OBJ): | $(DBG_OBJ_PATHS)
+
+$(DBG_DIR)/%.o: $(SRC_PATH)/%.c $(HEADER)
+	$(CC) $(CFLAGS) $(DBG_CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+# * Other rules
 .PHONY: test
 test:
 	$(MAKE) -C test test
@@ -143,12 +165,12 @@ norme:
 clean:
 	-$(MAKE) -C lib/libunit clean
 	-$(MAKE) -C test clean
-	-$(RM) -r $(OBJ_PATH)
+	-$(RM) -r $(OBJ_PATH) $(DBG_DIR)
 
 fclean: clean
 	-$(MAKE) -C lib/libunit fclean
 	-$(MAKE) -C test fclean
-	-$(RM) -r $(NAME) $(NAME).dSYM
+	-$(RM) -r $(NAME) $(DBG_NAME) *.dSYM
 
 re: fclean
 	-$(MAKE) all

@@ -6,7 +6,7 @@
 #    By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 09:48:23 by bwaegene          #+#    #+#              #
-#    Updated: 2017/10/09 13:10:39 by bwaegene         ###   ########.fr        #
+#    Updated: 2017/10/11 13:43:06 by bwaegene         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,11 +49,15 @@ LIB_NAME = libft.a
 LIB = $(addprefix $(LIB_PATH)/, $(LIB_NAME))
 INCLUDE = inc
 HEADER = $(INCLUDE)/$(NAME).h
-
-DEBUG ?= 0
-ifeq ($(DEBUG), 1)
-    CFLAGS += -g
-endif
+# Debug variables
+DBG_CFLAGS = -g -O0 -DDEBUG
+DBG_LDLIBS = $(subst lib,-l, $(DBG_LIB_NAME:.a=))
+DBG_LIB_NAME = libft-debug.a
+DBG_DIR = debug
+DBG_NAME = $(NAME)-debug
+DBG_OBJ = $(addprefix $(DBG_DIR)/, $(OBJ_NAME))
+DBG_OBJ_PATHS = $(sort $(dir $(DBG_OBJ)))
+DBG_LIB = $(addprefix $(LIB_PATH)/, $(LIB_PATH)-debug.a)
 
 all: lib $(NAME)
 
@@ -71,6 +75,24 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)
 lib:
 	$(MAKE) -C ./$(LIB_PATH)
 
+# * Debug rules
+debug: lib-debug $(DBG_NAME)
+
+$(DBG_NAME): $(DBG_LIB) $(DBG_OBJ)
+	$(CC) $(CFLAGS) $(DBG_CFLAGS) $(LDFLAGS) $(DBG_LDLIBS) $^ -o $@
+
+$(DBG_OBJ_PATHS):
+	mkdir -p $@
+
+$(DBG_OBJ): | $(DBG_OBJ_PATHS)
+
+$(DBG_DIR)/%.o: $(SRC_PATH)/%.c $(HEADER)
+	$(CC) $(CFLAGS) $(DBG_CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+lib-debug:
+	$(MAKE) -C ./$(LIB_PATH) debug
+
+# * Other rules
 .PHONY: norme
 norme:
 	-$(MAKE) -C ./$(LIB_PATH) norme
@@ -79,11 +101,11 @@ norme:
 .PHONY: clean
 clean:
 	-$(MAKE) -C ./$(LIB_PATH) clean
-	-$(RM) -r $(OBJ_PATH)
+	-$(RM) -r $(OBJ_PATH) $(DBG_DIR)
 
 fclean: clean
 	-$(MAKE) -C ./$(LIB_PATH) fclean
-	-$(RM) -r $(NAME) *.dSYM
+	-$(RM) -r $(NAME) $(DBG_NAME) *.dSYM
 
 re: fclean
 	$(MAKE) all
