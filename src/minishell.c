@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/10/05 19:03:14 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/11 17:43:46 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ int				sh_loop(void)
 	while (status >= 0)
 	{
 		ft_putstr(PROMPT);
-		get_next_line(0, &line);
+		if (get_next_line(STDIN_FILENO, &line) <= 0)
+			exit(status);
 		cmds = ft_strsplit(line, ';');
 		i = -1;
 		while (cmds[++i] && status >= 0)
 		{
 			args = sh_parse(cmds[i], status);
-			status = sh_exec(args, status);
+			status = sh_exec(args, ft_environ(NULL), status);
 			ft_freearr(args);
 		}
 		ft_freearr(cmds);
