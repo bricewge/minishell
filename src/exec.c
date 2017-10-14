@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/10/10 17:04:45 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/14 12:28:11 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ t_bltin				*builtins(void)
 	return (ret);
 }
 
+int					exit_status(int status)
+{
+	if (WIFEXITED(status))
+		status = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+		status = 128 + WTERMSIG(status);
+	if (status > 128 && status != 130)
+	{
+		ft_putstr_fd("signal received: ", STDERR_FILENO);
+		ft_putnbr_fd(status, STDERR_FILENO);
+		ft_putchar_fd('\n', STDERR_FILENO);
+	}
+	return (status);
+}
+
 int					ft_execute(char *path, char **args, char **envp)
 {
 	int				status;
@@ -56,12 +71,7 @@ int					ft_execute(char *path, char **args, char **envp)
 		execve(path, args, envp);
 		exit(ft_puterror("execution error: ", args[0], 1));
 	}
-	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	else if (WIFSIGNALED(status))
-		return (128 + WTERMSIG(status));
-	else
-		return (status);
+	return (exit_status(status));
 }
 
 int					sh_launch(char **args)

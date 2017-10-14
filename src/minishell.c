@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:24:35 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/10/11 17:43:46 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/15 11:07:11 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int				sh_loop(void)
 		while (cmds[++i] && status >= 0)
 		{
 			args = sh_parse(cmds[i], status);
-			status = sh_exec(args, ft_environ(NULL), status);
+			status = sh_exec(args, status);
 			ft_freearr(args);
+			if (status == 130)
+				break ;
 		}
 		ft_freearr(cmds);
 		free(line);

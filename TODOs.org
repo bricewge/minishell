@@ -3,6 +3,9 @@ CLOSED: [2017-10-11 Wed 13:49]
 https://stackoverflow.com/questions/1079832/how-can-i-configure-my-makefile-for-debug-and-release-builds/20830354#20830354
 https://felixcrux.com/blog/creating-basic-makefile
 * TODO Finalize env to be full POSIX
-* DONE Manage ctrl+D et ctrl+C keys combination features in line edition and process execution
-CLOSED: [2017-10-11 Wed 18:19]
+* NEXT Manage ctrl+D et ctrl+C keys combination features in line edition and process execution
+=a^D^D= should exit the shell. At the moment I need a third =^D= to exit.
 * TODO Write PDA for 21sh
+* DONE Fix =sleep 5 ; ls^C=
+CLOSED: [2017-10-14 Sat 12:29]
+=ls= shoudln't be run
