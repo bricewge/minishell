@@ -6,7 +6,7 @@
 /*   By: bwaegene <bwaegene@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 11:44:31 by bwaegene          #+#    #+#             */
-/*   Updated: 2017/01/23 14:07:24 by bwaegene         ###   ########.fr       */
+/*   Updated: 2017/10/14 15:05:29 by bwaegene         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,5 @@ int		get_next_line(const int fd, char **line)
 		}
 		*line = ft_strjoinf(*line, buf, 1);
 	}
-	if (**line && ret == 0)
-		return (1);
 	return (ret);
 }
